@@ -2,13 +2,14 @@ import path from 'path';
 import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
 import { fileURLToPath } from 'url'
+import { createRequire } from "module";
 import './files/c.js';
 
 const random = Math.random();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const { default: unknownObject } = await import(random>0.5 ? './files/a.json' : './files/b.json', { assert: { type: 'json' } });
+const unknownObject = createRequire(import.meta.url)(random>0.5 ? './files/a.json' : './files/b.json');
 
 
 console.log(`Release ${release()}`);

@@ -1,5 +1,4 @@
-import { throws } from "assert";
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -14,7 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url)),
 
 const copy = async () => {
     const opts = { recursive: true, errorOnExist: true, force: false };
-    fs.cp(fromFolder, toFolder, opts, (error) => { if (error) throw new Error(errmsg) });
+    fs.cp(fromFolder, toFolder, opts).then().catch(error => { throw new Error(errmsg) });
 };
 
 await copy();

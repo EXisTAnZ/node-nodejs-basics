@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from 'url';
 
@@ -13,7 +13,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url)),
       filepath = path.join(folderpath, filename);
 
 const create = async () => {
-    fs.writeFile(filepath, text, { flag: 'wx' }, (error) => { if (error) throw new Error(errmsg); });
+    fs.writeFile(filepath, text, { flag: 'wx' }).then()
+        .catch(error => { throw new Error(errmsg); });
 };
 
 await create();

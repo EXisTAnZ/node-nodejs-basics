@@ -10,8 +10,6 @@ const folderName = "files",
 const __dirname = path.dirname(fileURLToPath(import.meta.url)),
       removeFilePath = path.join(__dirname, folderName, removeFileName);
 
-const isExist = (path) => fs.access(path).then(_ => true).catch(_ => false);
-
 const remove = async () => {
     fs.rm(removeFilePath).then().catch(error => { throw new Error(errmsg); });
 };

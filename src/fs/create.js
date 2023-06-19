@@ -1,5 +1,20 @@
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from 'url';
+
+// дано:
+const text = "I am fresh and young",
+      filename = "fresh.txt",
+      foldername = "files",
+      errmsg = "FS operation failed";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url)),
+      folderpath = path.join(__dirname, foldername),
+      filepath = path.join(folderpath, filename);
+
 const create = async () => {
-    // Write your code here 
+    fs.writeFile(filepath, text, { flag: 'wx' }).then()
+        .catch(error => { throw new Error(errmsg); });
 };
 
 await create();
